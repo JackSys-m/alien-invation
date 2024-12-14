@@ -1,13 +1,20 @@
+import os
+
 import pygame
 
 class Ship():
     """Класс для управления кораблем."""
     
     def __init__(self, ai_game):
+        """Инициирует корабль и задаёт его начальную позицию."""
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
         
-        # загружает изображение корабля и получает прямоугольник
+        # проверка существования файла изображения
+        if not os.path.exists ('images/ship.bmp'):
+            raise FileNotFoundError ("Файл 'images/ship.bmp' не найден. Убедитесь, что он находится в папке 'images'.")
+        
+        # загрузка изображения корабля и получение его прямоугольника
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()
         # каждый новый корабль появляется у нижнего края экрана
