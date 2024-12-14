@@ -11,6 +11,7 @@ class AlienInvation():
     def __init__(self):
         """Инициализирует игру и создаёт игровые ресурсы."""
         pygame.init()
+        self.clock = pygame.time.Clock()
         self.settings = Settings()
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
@@ -32,6 +33,7 @@ class AlienInvation():
             
             # отображение последнего прорисованного экрана.
             pygame.display.flip()
+            self.clock.tick(75)
             
 if __name__ == '__main__':
     # создание экземпляра и запуск игры.
