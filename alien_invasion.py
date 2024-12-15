@@ -15,25 +15,27 @@ class AlienInvation():
         self.settings = Settings()
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
-        
         self.ship = Ship(self)
         
     def run_game(self):
         """Запуск основного цикла игры."""
         while True:
-            # отслеживание событий клавиатуры и мыши.
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-            
-            # при каждом проходе цикла перерисовывается экран.
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
-            
-            # отображение последнего прорисованного экрана.
-            pygame.display.flip()
-            self.clock.tick(75)
+            self._check_events_()
+            self._update_screen()
+    
+    def _check_events_(self):
+        """Обрабатывает нажатия клавиш и события мыши."""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+    
+    def _update_screen(self):
+        """Обновляет изображение на экране и отображает новый экран."""
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        pygame.display.flip()
+        self.clock.tick(75)
             
 if __name__ == '__main__':
     # создание экземпляра и запуск игры.
