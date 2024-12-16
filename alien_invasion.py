@@ -21,6 +21,7 @@ class AlienInvation():
         """Запуск основного цикла игры."""
         while True:
             self._check_events_()
+            self.ship.update()
             self._update_screen()
     
     def _check_events_(self):
@@ -29,6 +30,12 @@ class AlienInvation():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = True
+            elif event.type == pygame.KEYUP:
+                if event.key ==pygame.K_RIGHT:
+                    self.ship.moving_right = False
     
     def _update_screen(self):
         """Обновляет изображение на экране и отображает новый экран."""
