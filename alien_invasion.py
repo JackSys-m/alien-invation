@@ -27,6 +27,11 @@ class AlienInvation():
             self._check_events_()
             self.ship.update()
             self.bullets.update()
+            
+            # удаление снарядов, вышедших за край экрана
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
             self._update_screen()
     
     def _check_events_(self):
