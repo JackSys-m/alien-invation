@@ -10,6 +10,7 @@ class Alien(Sprite):
         """Инициализирует пришельца и задаёт его начальную позицию."""
         super().__init__()
         self.screen = ai_game.screen
+        self.settings = ai_game.settings
         
         # проверка существования файла изображения
         if not os.path.exists ('images/alien.bmp'):
@@ -25,3 +26,8 @@ class Alien(Sprite):
         
         # сохранение точной горизонтальной позиции пришельца
         self.x = float(self.rect.x)
+
+    def update(self):
+        """Перемещает пришельца вправо."""
+        self.x += self.settings.alien_speed
+        self.rect.x = self.x

@@ -23,13 +23,16 @@ class AlienInvation():
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         
+        self._create_fleet()
+        
     def run_game(self):
         """Запуск основного цикла игры."""
+        
         while True:
             self._check_events_()
             self.ship.update()
             self._update_bullets()
-            self._create_fleet()
+            self._update_aliens()
             self._update_screen()
     
     def _check_events_(self):
@@ -73,6 +76,10 @@ class AlienInvation():
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+    
+    def _update_aliens(self):
+        """Обновляет позиции всех пришельцев во флоте."""
+        self.aliens.update()
     
     def _create_fleet(self):
         """Создание флота вторжения."""
