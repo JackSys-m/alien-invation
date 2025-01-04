@@ -105,6 +105,9 @@ class AlienInvation():
         # проверка коллизий "пришелец - корабль".
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
+        
+        # проверить, добрались ли пришельцы до нижнего края экрана
+        self._check_alien_bottom()
     
     def _ship_hit(self):
         """Обрабатывает столкновение корабля с пришельцем."""
@@ -121,6 +124,15 @@ class AlienInvation():
         
         # пауза
         sleep(0.5)
+    
+    def _check_alien_bottom(self):
+        """Проверяет, добрались ли пришельцы до нижнего края экрана."""
+        screen_rect = self.screen.get_rect()
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= screen_rect.bottom:
+                # происходит то же, что при столкновении с кораблём
+                self._ship_hit()
+                break
     
     def _create_fleet(self):
         """Создание флота вторжения."""
