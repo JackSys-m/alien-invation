@@ -95,6 +95,10 @@ class AlienInvation():
         """
         self._check_fleet_edges()
         self.aliens.update()
+        
+        # проверка коллизий "пришелец - корабль".
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            print("Ship hit!!!")
     
     def _create_fleet(self):
         """Создание флота вторжения."""
