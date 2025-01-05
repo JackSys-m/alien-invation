@@ -75,6 +75,9 @@ class AlienInvation():
             # создание нового флота и размещение корабля в центре
             self._create_fleet()
             self.ship.center_ship()
+            
+            # указатель мыши скрывается
+            pygame.mouse.set_visible(False)
     
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
@@ -151,6 +154,7 @@ class AlienInvation():
             sleep(0.5)
         else:
             self.stats.game_active = False
+            pygame.mouse.set_visible(True)
 
     def _check_alien_bottom(self):
         """Проверяет, добрались ли пришельцы до нижнего края экрана."""
