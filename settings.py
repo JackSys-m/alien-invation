@@ -22,6 +22,8 @@ class Settings():
         
         # темп ускорения игры
         self.speedup_scale = 1.1
+        # темп роста скорости пришельцев
+        self.score_scale =1.5
         
         self.initialize_dynamic_settings()
         
@@ -41,3 +43,4 @@ class Settings():
         self.bullet_speed_factor *= self.speedup_scale
         self.alien_speed_factor *= self.speedup_scale
         
+        self.alien_points = int(self.alien_points * self.score_scale)
