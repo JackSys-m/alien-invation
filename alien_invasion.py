@@ -122,6 +122,10 @@ class AlienInvation():
         # удаление снарядов и пришельцев, участвующих в коллизиях
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
         
+        if collisions:
+            self.stats.score += self.settings.alien_points
+            self.sb.prep_score()
+        
         if not self.aliens:
             # уничтожение существующих снарядов и создание нового флота
             self.bullets.empty()
