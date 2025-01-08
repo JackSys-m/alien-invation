@@ -63,8 +63,7 @@ class AlienInvation():
                 self._check_play_button(mouse_pos)
 
     def _save_and_exit(self):
-        """Сохраняет рекорд и выходит из игры."""
-        self.stats.save_high_score()
+        """Сохраняет рекорд и выходит из"""
         pygame.quit()
         sys.exit()
     
@@ -110,9 +109,11 @@ class AlienInvation():
     
     def _fire_bullet(self):
         """Создание нового снаряда и включение его в группу bullets."""
-        if len(self.bullets) < self.settings.bullets_allowed:
-            new_bullet = Bullet(self)
-            self.bullets.add(new_bullet)
+        # проверка, активна ли игра
+        if self.stats.game_active:
+            if len(self.bullets) < self.settings.bullets_allowed:
+                new_bullet = Bullet(self)
+                self.bullets.add(new_bullet)
     
     def _update_bullets(self):
         """Обновляет позиции снарядов и уничтожает старые снаряды."""
