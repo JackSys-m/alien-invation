@@ -18,12 +18,9 @@ class Scoreboard():
         # настройки шрифта для вывода счёта
         self.text_color = (0, 64, 0)
         self.font = pygame.font.SysFont(None, 48)
-        # подготовка  изображений счетов
-        self.prep_score()
-        self.prep_high_score()
-        self.prep_level()
-        self.prep_ships()
-    
+        # подготовка изображений счетов, уровня и кораблей
+        self.prep_images()
+        
     def prep_score(self):
         """Преобразует текущий счёт в графическое изображение."""
         rounded_score = round(self.stats.score, -1)
@@ -78,3 +75,10 @@ class Scoreboard():
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
         self.ships.draw(self.screen)
+        
+    def prep_images(self):
+        """Подготовка изображений счетов, уровня и доступных кораблей."""
+        self.prep_score()
+        self.prep_high_score()
+        self.prep_level()
+        self.prep_ships()
