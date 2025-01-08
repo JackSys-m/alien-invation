@@ -143,9 +143,13 @@ class AlienInvation():
             self._create_fleet()
             self.settings.increase_speed()
             
-            # увеличение уровня
-            self.stats.level += 1
-            self.sb.prep_level()
+            # запуск нового уровня после уничтожения флота
+            self._start_new_level()
+
+    def _start_new_level(self):
+        """Увеличение уровня."""
+        self.stats.level += 1
+        self.sb.prep_level()
     
     def _update_aliens(self):
         """
