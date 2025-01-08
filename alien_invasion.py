@@ -53,8 +53,7 @@ class AlienInvation():
         """Обрабатывает нажатия клавиш и события мыши."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                self._save_and_exit()
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
@@ -62,6 +61,12 @@ class AlienInvation():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 self._check_play_button(mouse_pos)
+
+    def _save_and_exit(self):
+        """Сохраняет рекорд и выходит из игры."""
+        self.stats.save_high_score()
+        pygame.quit()
+        sys.exit()
     
     def _check_play_button(self, mouse_pos):
         """Запускает новую игру при нажатии кнопки Play."""
